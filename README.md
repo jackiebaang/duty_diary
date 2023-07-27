@@ -1,4 +1,4 @@
-<p align="center"><a href="#" target="_blank"><img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA3L2pvYjk0OS0xNTUuanBn.jpg" width="400"></a></p>
+<p><a href="#" target="_blank"><img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA3L2pvYjk0OS0xNTUuanBn.jpg" width="200"></a></p>
 
 
 ## Duty Diary
