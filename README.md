@@ -2,17 +2,17 @@
 
 
 ## Duty Diary
-
 Jema jema ra nga description pero para ni sya sa sake sa tutorial nga makamao sila mu edit ug mu update sa readme nga file.
 
 ## Steps to run this system after cloning
-
 - run `composer install`
 - run `php artisan key:generate`
+- run `cp .env.example .env`
 - run `php artisan serve (optional)`
+- run `npm install`
+- run `npm run dev`
 
 ### Contributors
-
 - Bonakid
 - Misis Rubillos
 - Discoboy
