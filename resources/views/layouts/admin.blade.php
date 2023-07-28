@@ -1,9 +1,9 @@
-@include('layouts.partials._header')
+@include('layouts.admin-partials._header')
     
     <div id="app">
 
         <div id="wrapper">
-            @include('layouts.partials._sidebar')
+            @include('layouts.admin-partials._sidebar')
             <main id="content-area">
                 <!-- Content Wrapper -->
                 <div id="content-wrapper" class="d-flex flex-column">
@@ -11,7 +11,7 @@
                     <!-- Main Content -->
                     <div id="content">
 
-                        @include('layouts.partials._topbar')
+                        @include('layouts.admin-partials._topbar')
 
                         <!-- Begin Page Content -->
                         <div class="container-fluid bg-danger">
@@ -24,7 +24,7 @@
                     </div>
                     <!-- End of Main Content -->
 
-                    @include('layouts.partials._footer-block')
+                    @include('layouts.admin-partials._footer-block')
 
                 </div>
                 <!-- End of Content Wrapper -->
@@ -32,8 +32,8 @@
         </div>
     </div>
 
-    @include('layouts.partials._scroll-to-top')
+    @include('layouts.admin-partials._scroll-to-top')
 
-    @include('layouts.partials._logout-modal')
+    @include('layouts.admin-partials._logout-modal')
 
-    @include('layouts.partials._footer')
+    @include('layouts.admin-partials._footer')
