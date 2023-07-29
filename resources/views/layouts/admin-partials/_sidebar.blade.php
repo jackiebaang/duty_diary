@@ -13,8 +13,10 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item 
+        {{ request()->is('admin') ? 'active' : '' }}
+    ">
+        <a class="nav-link" href="/admin">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -23,17 +25,47 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+    <li class="nav-item 
+        {{ request()->is('diaries') ? 'active' : '' }}
+    ">
+        <a class="nav-link" href="{{ route('diaries.index')}}">
             <i class="fas fa-solid fa-book-open"></i>
             <span>Diaries</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+    <li class="nav-item 
+        {{ request()->is('documentations') ? 'active' : '' }}
+    ">
+        <a class="nav-link" href="{{route('documentations.index')}}">
             <i class="fas fa-solid fa-camera-retro"></i>
             <span>Documentations</span></a>
+    </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+
+     <!-- Nav Item - Charts -->
+     <li class="nav-item 
+        {{ request()->is('approval-requests') ? 'active' : '' }}
+    ">
+         <a class="nav-link" href="{{route('approval-requests.index')}}">
+            <i class="fas fa-solid fa-check-double"></i>
+             <span>Approval Requests</span>
+        </a>
+     </li>
+
+      <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item 
+        {{ request()->is('users') ? 'active' : '' }}
+    ">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fas fa-solid fa-users"></i>
+            <span>Users</span>
+        </a>
     </li>
 
 </ul>

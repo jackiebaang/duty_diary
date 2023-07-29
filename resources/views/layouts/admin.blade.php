@@ -9,12 +9,12 @@
                 <div id="content-wrapper" class="d-flex flex-column">
 
                     <!-- Main Content -->
-                    <div id="content">
+                    <div id="content" class="pb-2">
 
                         @include('layouts.admin-partials._topbar')
 
                         <!-- Begin Page Content -->
-                        <div class="container-fluid bg-danger">
+                        <div class="container-fluid pb-2 mb-2">
 
                             @yield('content')
 

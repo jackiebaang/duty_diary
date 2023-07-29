@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/icons/diary-icon.ico') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -30,6 +30,10 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0371f381a6.js" crossorigin="anonymous"></script>
+    
+    {{-- SweetAlert Script --}}
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 
     <style>
         #wrapper .sidebar{

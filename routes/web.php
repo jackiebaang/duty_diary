@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DiariesController;
+use App\Http\Controllers\DocumentationsController;
+use App\Http\Controllers\ApprovalRequestsController;
+use App\Http\Controllers\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +25,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::resource('/diaries', DiariesController::class);
+Route::resource('/documentations', DocumentationsController::class);
+Route::resource('/approval-requests', ApprovalRequestsController::class);
+Route::resource('/users', UsersController::class);
