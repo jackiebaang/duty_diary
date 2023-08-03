@@ -11,6 +11,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    {{-- Dropify --}}
+    <script src="{{ asset('js/dropify.js') }}"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -34,6 +38,9 @@
     
     {{-- SweetAlert Script --}}
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+
+    {{-- Dropify --}}
+    <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
 
     <style>
         #wrapper .sidebar{
