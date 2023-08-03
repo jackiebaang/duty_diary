@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Documentation;
+use Illuminate\Support\Facades\Auth;
+
 
 class DocumentationsController extends Controller
 {
@@ -34,7 +37,31 @@ class DocumentationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'doc_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image file
+        ]);
+
+        if ($request->hasFile('doc_img')) {
+            $imageFile = $request->file('doc_img');
+            $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            // originalName-time.extension
+            $filename = $originalName . "-" . time() . '.' . $imageFile->getClientOriginalExtension();
+            
+            $path = $imageFile->storeAs('public/uploads/images', $filename);
+            
+            if (Auth::check()) {
+                $userId = Auth::id();
+            }
+
+            Documentation::create([
+                'image' => $filename,
+                'caption' => $request->caption,
+                'author_id' => $userId
+            ]);
+    
+            return view('admin.documentations.index')->with('uploadSuccess','The image '.$filename.' successfully uploaded!');
+        }
+    
     }
 
     /**
