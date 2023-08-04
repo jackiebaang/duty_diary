@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use DataTables;
 
 class UsersController extends Controller
 {
@@ -15,9 +16,12 @@ class UsersController extends Controller
      */
     public function index()
     { 
-        $users = User::all();
-        // dd($users); 
-        return view('admin.users.index')->with('users',$users);
+        if(request()->ajax())
+        {
+            $users = User::all();
+            return $this->generateDatatables($users);
+        };
+        return view('admin.users.index');
     }
 
     /**
@@ -140,5 +144,33 @@ class UsersController extends Controller
         } else {
             return response()->json(['error' => 'Deletion failed!']);
         }
+    }
+
+    public function generateDatatables($request)
+    {
+        return DataTables::of($request)
+                ->addIndexColumn()
+                ->addColumn('role', function($data){
+                    $role = '';
+                    if($data->role_id == 1){
+                        $role = '<span class="badge badge-primary">Administrator</span>';
+                    } else if($data->role_id == 2){
+                        $role = '<span class="badge badge-warning">Supervisor</span>';
+                    } else {
+                        $role = '<span class="badge badge-secondary">Trainee</span>';
+                    }
+                    return $role;
+                })
+                ->addColumn('action', function($data){
+                    $actionButtons = '<a href="" data-id="'.$data->id.'" class="btn btn-sm btn-warning editUser">
+                                        <i class="fas fa-edit"></i>
+                                      </a>
+                                      <a href="" data-id="'.$data->id.'" class="btn btn-sm btn-danger deleteInstructor">
+                                        <i class="fas fa-trash"></i>
+                                      </a>';
+                    return $actionButtons;
+                })
+                ->rawColumns(['action','role'])
+                ->make(true);
     }
 }

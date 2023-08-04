@@ -1,0 +1,39 @@
+#wrapper .sidebar{
+    width: 20%!important;
+}
+#wrapper main{
+    width: 80%!important;
+    position: static;
+    background: #f8f9fc;
+}
+.sticky-footer{
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+}
+#wrapper #content-wrapper{
+    height: 100vh;
+}
+
+#users-table_length,
+#users-table_filter{
+    padding: 0 15px;
+}
+
+#users-table_filter{
+    text-align: right;
+}
+
+#users-table_filter label{
+    text-align: left;
+}
+
+#users-table_paginate{
+    display: flex;
+    justify-content: end;
+}
+
+#users-table_info,
+#users-table_paginate .pagination{
+    margin: 15px;
+}

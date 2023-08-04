@@ -45,23 +45,6 @@
     {{-- LightBox --}}
     <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
 
-    <style>
-        #wrapper .sidebar{
-            width: 20%!important;
-        }
-        #wrapper main{
-            width: 80%!important;
-            position: static;
-            background: #f8f9fc;
-        }
-        .sticky-footer{
-            position: absolute;
-            bottom: 0;
-            width: 80%;
-        }
-        #wrapper #content-wrapper{
-            height: 100vh;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body id="page-top">
