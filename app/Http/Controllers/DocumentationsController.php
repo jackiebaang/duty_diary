@@ -16,7 +16,8 @@ class DocumentationsController extends Controller
      */
     public function index()
     {
-        return view('admin.documentations.index');
+        $docs = Documentation::latest()->get();
+        return view('admin.documentations.index')->with('docs',$docs);
     }
 
     /**

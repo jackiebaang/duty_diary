@@ -42,6 +42,9 @@
     {{-- Dropify --}}
     <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
 
+    {{-- LightBox --}}
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
     <style>
         #wrapper .sidebar{
             width: 20%!important;

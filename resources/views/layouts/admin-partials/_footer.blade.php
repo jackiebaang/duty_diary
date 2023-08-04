@@ -9,8 +9,9 @@
     <!-- Custom scripts for all pages-->
     {{-- <script src="{{ asset('js/sb-admin-2.min.js') }}"></script> --}}
 
+    {{-- LightBox --}}
+    <script src="{{ asset('js/lightbox.js') }}"></script>
     
-
     <script>
         function confirmDelete(id){
             let userId = id;

@@ -33,7 +33,7 @@
             <span>Diaries</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
+    <!-- Nav Item - Documentations -->
     <li class="nav-item 
         {{ request()->is('documentations') ? 'active' : '' }}
     ">
@@ -42,10 +42,12 @@
             <span>Documentations</span></a>
     </li>
 
+    
+    @if(Session::get('USERROLE') == 1 || Session::get('USERROLE') == 2)
      <!-- Divider -->
      <hr class="sidebar-divider">
 
-     <!-- Nav Item - Charts -->
+     <!-- Nav Item - Approval Requests -->
      <li class="nav-item 
         {{ request()->is('approval-requests') ? 'active' : '' }}
     ">
@@ -54,11 +56,14 @@
              <span>Approval Requests</span>
         </a>
      </li>
+     @endif
 
+
+     @if(Session::get('USERROLE') == 1)
       <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Users -->
     <li class="nav-item 
         {{ request()->is('users') ? 'active' : '' }}
     ">
@@ -67,6 +72,6 @@
             <span>Users</span>
         </a>
     </li>
-
+    @endif
 </ul>
 <!-- End of Sidebar -->
