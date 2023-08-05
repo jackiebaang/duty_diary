@@ -6,9 +6,11 @@ Jema jema ra nga description pero para ni sya sa sake sa tutorial nga makamao si
 
 ## Steps to run this system after cloning
 - run `composer install`
-- run `php artisan key:generate`
 - run `cp .env.example .env`
-- run `php artisan serve (optional)`
+- run `php artisan key:generate`
+- run `php artisan migrate`
+- run `php artisan db:seed --class=RolesSeeder`
+- run `php artisan db:seed --class=AdminUserSeeder`
 - run `npm install`
 - run `npm run dev`
 
