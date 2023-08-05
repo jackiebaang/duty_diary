@@ -18,8 +18,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
+    {{-- Delete Script --}}
     <script>
         function confirmDelete(id){
+            debugger;
             let userId = id;
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -61,7 +63,7 @@
                         confirmButtonText: 'Okay'
                         }).then((result) => {
                         if (result.isConfirmed) {
-                            location.reload();
+                            // location.reload();
                         }
                     })
             })
@@ -83,5 +85,14 @@
             })
         }
     </script>
+
+    {{-- TinyMCE Script --}}
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+      </script>
 </body>
 </html>

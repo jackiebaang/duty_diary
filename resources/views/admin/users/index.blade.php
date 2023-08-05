@@ -27,11 +27,6 @@
               <tbody>
               </tbody>
             </table>
-            @if(isset($user_name))
-              <div class="alert alert-success mb-0">
-                <strong>Success!</strong> {{ $user_name }}'s information has been successfully updated.
-              </div>
-            @endif
         </div>
     </div>
     @include('admin.users.partials._datatables-scripts')

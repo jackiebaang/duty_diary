@@ -134,6 +134,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         $deleteUser = User::findOrFail($id);
         // dd($deleteUser,$deleteUser->name);
         $userName = $deleteUser->name;
@@ -162,10 +163,10 @@ class UsersController extends Controller
                     return $role;
                 })
                 ->addColumn('action', function($data){
-                    $actionButtons = '<a href="" data-id="'.$data->id.'" class="btn btn-sm btn-warning editUser">
+                    $actionButtons = '<a href="'.route("users.edit",$data->id).'" data-id="'.$data->id.'" class="btn btn-sm btn-warning editUser">
                                         <i class="fas fa-edit"></i>
                                       </a>
-                                      <a href="" data-id="'.$data->id.'" class="btn btn-sm btn-danger deleteInstructor">
+                                      <a href="" data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDelete('.$data->id.')">
                                         <i class="fas fa-trash"></i>
                                       </a>';
                     return $actionButtons;
