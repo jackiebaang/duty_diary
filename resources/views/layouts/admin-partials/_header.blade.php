@@ -45,6 +45,10 @@
     {{-- LightBox --}}
     <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
 
+    {{-- TinyMCE --}}
+    <script src="https://cdn.tiny.cloud/1/f91h8ob9cbvkiqq7t8c04i5g7mpzus8bufl7tdxkfq8cydqj/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    {{-- Custom CSS --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body id="page-top">

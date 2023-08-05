@@ -16,24 +16,31 @@
 }
 
 #users-table_length,
-#users-table_filter{
+#users-table_filter,
+#diaries-table_length,
+#diaries-table_filter{
     padding: 0 15px;
 }
 
-#users-table_filter{
+#users-table_filter,
+#diaries-table_filter{
     text-align: right;
 }
 
-#users-table_filter label{
+#users-table_filter label,
+#diaries-table_filter label{
     text-align: left;
 }
 
-#users-table_paginate{
+#users-table_paginate,
+#diaries-table_paginate{
     display: flex;
     justify-content: end;
 }
 
 #users-table_info,
-#users-table_paginate .pagination{
+#users-table_paginate .pagination,
+#diaries-table_info,
+#diaries-table_paginate .pagination{
     margin: 15px;
 }
