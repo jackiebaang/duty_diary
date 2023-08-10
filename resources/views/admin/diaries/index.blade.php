@@ -11,6 +11,12 @@
             </div>
         </div>
         <div class="card-body">
+
+            @if (isset($success))
+                <div class="alert alert-success mx-2">
+                    {{ $success }}
+                </div>
+            @endif
             <table class="table table-sm table-hover" id="diaries-table">
                 <thead>
                     <tr>

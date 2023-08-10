@@ -27,6 +27,7 @@ class CheckRouteAccess
             'diaries.update',
             'diaries.store',
             'diaries.destroy',
+            'diaries.print',
             'documentations.index',
             'documentations.create',
             'documentations.store',
@@ -42,6 +43,8 @@ class CheckRouteAccess
             'approval-requests.update',
             'approval-requests.destroy',
             'approval-requests.print',
+            'approval-requests.approve',
+            'approval-requests.reject',
             'users.index',
             'users.create',
             'users.store',
@@ -51,8 +54,6 @@ class CheckRouteAccess
             'users.destroy',
             'profile.index',
             'profile.update',
-            'approval-requests.approve',
-            'approval-requests.reject'
         ];
 
         $currentRouteName = $request->route()->getName();
@@ -78,6 +79,7 @@ class CheckRouteAccess
                 'diaries.store',
                 'diaries.destroy',
                 'diaries.update',
+                'diaries.print',
                 'documentations.index',
                 'documentations.create',
                 'documentations.store',

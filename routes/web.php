@@ -31,6 +31,7 @@ Route::get('/not-authorized', function(){
 Route::middleware('checkRouteAccess')->group(function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
     Route::resource('/diaries', DiariesController::class);
+    Route::get('/print/diaries/{id}',[App\Http\Controllers\DiariesController::class, 'print'])->name('diaries.print');
     Route::resource('/documentations', DocumentationsController::class);
     Route::resource('/approval-requests', ApprovalRequestsController::class);
     Route::get('/print/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestsController::class, 'print'])->name('approval-requests.print');
