@@ -28,9 +28,13 @@ class HomeController extends Controller
         if (Auth::check()) {
             $userName = Auth::user()->name;
             $userRole = Auth::user()->role_id;
+            $userImg = Auth::user()->img;
+            $userSign = Auth::user()->sign;
             
             Session::put('USERNAME', $userName);
             Session::put('USERROLE', $userRole);
+            Session::put('USERIMG', $userImg);
+            Session::put('USERSIGN', $userSign);
         }
         return view('admin.dashboard');
     }

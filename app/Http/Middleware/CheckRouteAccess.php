@@ -52,6 +52,7 @@ class CheckRouteAccess
             'users.edit',
             'users.update',
             'users.destroy',
+            'users.updateProfileName',
             'profile.index',
             'profile.update',
         ];
@@ -88,6 +89,9 @@ class CheckRouteAccess
                 'documentations.update',
                 'documentations.destroy',
                 'approval-requests.print',
+                'users.updateProfilePic',
+                'users.updateSignature',
+                'users.updateProfileName'
             ]))) {
                 $allowedRoles = [1, 2, 3];
             } elseif (in_array($currentRouteName, [                    

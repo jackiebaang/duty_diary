@@ -51,3 +51,7 @@
 #approval-requests-table_paginate .pagination{
     margin: 15px;
 }
+
+.item-hover:hover {
+    cursor: pointer;
+}
