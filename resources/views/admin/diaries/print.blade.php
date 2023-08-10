@@ -37,8 +37,3 @@
     <p class="m-0">HTE Supervising Officer</p>
     <p class="m-0">Date: {{ now()->format('md/y') }}</p>
 @endsection
-            
-
-
-
-        
