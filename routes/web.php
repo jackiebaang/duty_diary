@@ -38,4 +38,7 @@ Route::middleware('checkRouteAccess')->group(function () {
     Route::put('/approve/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestsController::class, 'approve'])->name('approval-requests.approve');
     Route::put('/reject/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestsController::class, 'reject'])->name('approval-requests.reject');
     Route::resource('/users', UsersController::class);
+    Route::put('/users/profile-pic/{id}',[App\Http\Controllers\UsersController::class, 'updateProfilePic'])->name('users.updateProfilePic');
+    Route::put('/users/profile-sign/{id}',[App\Http\Controllers\UsersController::class, 'updateSignature'])->name('users.updateSignature');
+    Route::put('/users/profile-name/{id}',[App\Http\Controllers\UsersController::class, 'updateProfileName'])->name('users.updateProfileName');
 });

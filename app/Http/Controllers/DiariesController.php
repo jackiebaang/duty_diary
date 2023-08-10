@@ -108,7 +108,8 @@ class DiariesController extends Controller
             'diary' => $diary,
             'name' => $name,
             'title' => $title,
-            'supervisor' => $supervisor
+            'supervisor' => $supervisor,
+            'signature' => $user->signature
         ];
         return view('admin.diaries.show')->with('diary',$diary_details);
     }
@@ -132,7 +133,8 @@ class DiariesController extends Controller
             'diary' => $diary,
             'name' => $name,
             'title' => $title,
-            'supervisor' => $supervisor
+            'supervisor' => $supervisor,
+            'signature' => $user->signature
         ];
         return view('admin.diaries.print')->with('diary',$diary_details);
     }
