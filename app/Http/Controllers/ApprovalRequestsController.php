@@ -137,7 +137,8 @@ class ApprovalRequestsController extends Controller
         $diary = Diary::findOrFail($id);
             
         $diary->update([
-            'status' => 1
+            'status' => 1,
+            'supervisor_id' => Auth::user()->id
         ]);
 
         if($diary){
