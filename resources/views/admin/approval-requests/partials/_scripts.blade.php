@@ -33,7 +33,7 @@
                             confirmButtonText: 'Okay'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.reload();
+                                $('#approval-requests-table').DataTable().ajax.reload();
                             }
                         })
                     },
@@ -83,7 +83,7 @@
                             confirmButtonText: 'Okay'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.reload();
+                                $('#approval-requests-table').DataTable().ajax.reload();
                             }
                         })
                     },

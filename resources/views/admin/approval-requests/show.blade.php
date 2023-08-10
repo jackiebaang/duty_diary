@@ -11,6 +11,10 @@
                     </h4>
                 </div>
                 <div class="col-md-4 col-12 text-right">
+                    <a href="{{ back()->getTargetUrl() }}" class="btn btn-sm btn-secondary">
+                        <i class="fas fa-solid fa-chevron-left"></i>
+                        Back
+                    </a>
                     <a href="{{ route('approval-requests.print', $diary['diary']->id) }}" class="btn btn-sm btn-warning" target="_blank">
                         <i class="fas fa-solid fa-print"></i>
                     </a>

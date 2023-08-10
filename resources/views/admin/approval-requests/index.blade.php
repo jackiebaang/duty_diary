@@ -36,5 +36,6 @@
         </div>
     </div>
     @include('admin.approval-requests.partials._datatables-script')
+    @include('admin.approval-requests.partials._scripts')
 
 @endsection
