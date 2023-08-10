@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewUserEmail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -49,15 +52,25 @@ class UsersController extends Controller
                 'email' => 'required|email',
                 'temp-password' => 'required|min:8',
             ]);
-    
+            
             $user = User::create([
                 'name' => $request->name,
                 'role_id' => $request->role,
                 'email' => $request->email,
                 'password' => Hash::make($request->input('temp-password')),
-                'isComplete' => 0
+                'isPicComplete' => 0,
+                'isSignatureComplete' => 0
             ]);
     
+            if($user){
+                $invite = [
+                    'user' => $user,
+                    'url' => route('login'),
+                    'pass' => $request->input('temp-password'),
+                    'invitedBy' => Auth::user()->name
+                ];
+                Mail::to($request->email)->send(new NewUserEmail($invite));
+            }
             $users = User::all();
             
             return view('admin.users.index')->with('users',$users);
