@@ -22,7 +22,7 @@
                 @if ( Session::get('USERIMG') == Null )
                     <img src="{{ asset('assets/images/user-placeholder.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle">
                 @else 
-                    <img class="img-profile rounded-circle" src="{{ Session::get('USERIMG') }}">
+                    <img class="img-profile rounded-circle" src="{{ asset('storage/'.Session::get('USERIMG')) }}">
                 @endif                
             </a>
             <!-- Dropdown - User Information -->
