@@ -1,17 +1,23 @@
 @component('mail::message')
-# You are invited!
+@slot('header')
+    @component('mail::header', ['url' => config('app.url')])
+        <img src="{{ asset('assets/images/cdl-logo.png') }}" alt="{{ config('app.name') }} Logo">
+        {{ config('app.name') }}
+    @endcomponent
+@endslot
+# You are Invited!
 <br>
 Hello {{ $inviteData['user']->name }},  
 <br><br>
-{{ $inviteData['invitedBy']}} has invited you to CDL Internship's Duty Diary  
+{{ $inviteData['invitedBy']}} has invited you to CDL's Internship Duty Diary  
 <br><br>
 *****************************************<br>
 Username: {{ $inviteData['user']->email }}<br>
-Temporary Password: {{ $inviteData['pass'] }}
+Temporary Password: {{ $inviteData['pass'] }}<br>
 *****************************************
 <br>
 @component('mail::button', ['url' => $inviteData['url'], 'class'=>'text-right'])
-Accept
+Login
 @endcomponent
 
 Thanks,<br>
