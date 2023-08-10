@@ -134,7 +134,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $deleteUser = User::findOrFail($id);
         // dd($deleteUser,$deleteUser->name);
         $userName = $deleteUser->name;
