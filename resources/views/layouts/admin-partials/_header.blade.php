@@ -52,3 +52,6 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body id="page-top">
+    @php
+        use Illuminate\Support\Str;
+    @endphp

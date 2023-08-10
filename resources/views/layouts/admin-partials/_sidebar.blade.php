@@ -26,16 +26,17 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item 
-        {{ request()->is('diaries') ? 'active' : '' }}
+        {{ Str::is('diaries*', request()->route()->getName()) ? 'active' : '' }}
     ">
-        <a class="nav-link" href="{{ route('diaries.index')}}">
+        <a class="nav-link" href="{{ route('diaries.index') }}">
             <i class="fas fa-solid fa-book-open"></i>
-            <span>Diaries</span></a>
+            <span>Diaries</span>
+        </a>
     </li>
 
     <!-- Nav Item - Documentations -->
     <li class="nav-item 
-        {{ request()->is('documentations') ? 'active' : '' }}
+        {{ Str::is('documentations*', request()->route()->getName()) ? 'active' : '' }}
     ">
         <a class="nav-link" href="{{route('documentations.index')}}">
             <i class="fas fa-solid fa-camera-retro"></i>
@@ -49,7 +50,7 @@
 
      <!-- Nav Item - Approval Requests -->
      <li class="nav-item 
-        {{ request()->is('approval-requests') ? 'active' : '' }}
+        {{ Str::is('approval-requests*', request()->route()->getName()) ? 'active' : '' }}
     ">
          <a class="nav-link" href="{{route('approval-requests.index')}}">
             <i class="fas fa-solid fa-check-double"></i>
