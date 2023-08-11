@@ -104,7 +104,10 @@ class CheckRouteAccess
                     'approval-requests.destroy',
                     'approval-requests.print',
                     'approval-requests.approve',
-                    'approval-requests.reject'
+                    'approval-requests.reject',
+                    'users.updateProfilePic',
+                    'users.updateSignature',
+                    'users.updateProfileName'
                 ])) {
                 $allowedRoles = [1, 2];
             } elseif (in_array($currentRouteName,[
