@@ -107,7 +107,8 @@ class CheckRouteAccess
                     'approval-requests.reject',
                     'users.updateProfilePic',
                     'users.updateSignature',
-                    'users.updateProfileName'
+                    'users.updateProfileName',
+                    'users.show',
                 ])) {
                 $allowedRoles = [1, 2];
             } elseif (in_array($currentRouteName,[
