@@ -109,7 +109,7 @@ class DiariesController extends Controller
             'name' => $name,
             'title' => $title,
             'supervisor' => $supervisor,
-            'signature' => $user->signature
+            'signature' => $sup->signature
         ];
         return view('admin.diaries.show')->with('diary',$diary_details);
     }
