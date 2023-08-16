@@ -196,4 +196,93 @@
             });
         }
     })
+
+    $('#editPass').click(function(){
+        $('#editPass').addClass('d-none');
+        $('#password-input').removeClass('d-none');
+        $('#password-input').focus();
+        $('#password-input').select();
+    })
+
+    $('#password-input').blur(function(){
+        var form = $('#update-password-form');
+
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                Swal.fire({
+                    title: 'Success',
+                    text: response.successMessage,
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Okay'
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                })
+            },
+            error: function(xhr, status, error) {
+                console.error('Request failed with status: ' + status);
+            }
+        });
+    })
+
+    $('#password-input').on('keypress',function(event){
+        if(event.keyCode === 13){
+            event.preventDefault();
+            let id = $(this).attr('data-id');
+            
+            var form = $(this).closest('#update-password-form');
+            var formData = new FormData(form[0]);
+
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response);
+                    Swal.fire({
+                        title: 'Success',
+                        text: response.successMessage,
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Okay'
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {    
+                            var redirectUrl = '{{ route("users.show", ["user" => ":id"]) }}';
+                            redirectUrl = redirectUrl.replace(':id', id);
+                            
+                            window.location.href = redirectUrl;
+                        }
+                    })
+                },
+                error: function(xhr, status, error) {
+                    console.error('Request failed with status: ' + status);
+                }
+            });
+        }
+    })
 </script>

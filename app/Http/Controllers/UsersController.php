@@ -88,10 +88,12 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $profile = User::where('id','=',$id)->first();
-
-        return view('admin.profile.index')->with('profile',$profile);
+        $profile = User::find($id);
+        return view('admin.profile.index')->with('profile', $profile);
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -175,7 +177,7 @@ class UsersController extends Controller
                     if($user){
                         $imageFile->storeAs('public/uploads/profiles/', $filename);
 
-                        $successMessage = $filename.'\'s profile picture successfully uploaded!';
+                        $successMessage = $user->name .'\'s profile picture successfully uploaded!';
 
                         return response()->json(['successMessage' => $successMessage]);
                     }
@@ -263,6 +265,42 @@ class UsersController extends Controller
                 return redirect()->back()->withErrors($e->errors())->withInput();
             }
         }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request, $id)
+    {
+        // dd(request()->ajax(),$request,$id);
+        // if(request()->ajax()){
+            try {            
+                $request->validate([
+                    'password' => 'required|string|max:255', 
+                ]);
+                
+                $user = User::findOrFail($id);
+            
+                $user->update([
+                    'password' => Hash::make($request->password),
+                    'isPassChanged' => 1
+                ]);
+                
+                if($user){
+                    $successMessage = 'Your password is now updated '.$user->name.'!';
+
+                    return response()->json(['successMessage' => $successMessage]);
+                }
+
+                // return redirect()->route('success')->with('success', 'Data saved successfully!');
+            } catch (ValidationException $e) {
+                return redirect()->back()->withErrors($e->errors())->withInput();
+            }
+        // }
     }
 
     /**

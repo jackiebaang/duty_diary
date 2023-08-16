@@ -41,4 +41,5 @@ Route::middleware('checkRouteAccess')->group(function () {
     Route::put('/users/profile-pic/{id}',[App\Http\Controllers\UsersController::class, 'updateProfilePic'])->name('users.updateProfilePic');
     Route::put('/users/profile-sign/{id}',[App\Http\Controllers\UsersController::class, 'updateSignature'])->name('users.updateSignature');
     Route::put('/users/profile-name/{id}',[App\Http\Controllers\UsersController::class, 'updateProfileName'])->name('users.updateProfileName');
+    Route::put('/users/profile-pass/{id}',[App\Http\Controllers\UsersController::class, 'updatePassword'])->name('users.updatePassword');
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -36,6 +37,35 @@ class HomeController extends Controller
             Session::put('USERIMG', $userImg);
             Session::put('USERSIGN', $userSign);
         }
+
+        $errorMessages = [];
+
+        if (Auth::user()->isPassChanged == 0) {
+            $errorMessages[] = 'Please update your password!';
+        }
+
+        if (Auth::user()->isPicComplete == 0) {
+            $errorMessages[] = 'Please upload your profile picture!';
+        }
+
+        if (Auth::user()->isSignatureComplete == 0) {
+            $errorMessages[] = 'Please upload your signature! Make sure it has a transparent background.';
+        }
+
+        if (!empty($errorMessages)) {
+            $errorMessage = '<ul>';
+            foreach ($errorMessages as $message) {
+                $errorMessage .= '<li>' . $message . '</li>';
+            }
+            $errorMessage .= '</ul>';
+
+            $profile = User::where('id','=',Auth::user()->id)->first();
+            return view('admin.profile.index')->with([
+                'error' => $errorMessage,
+                'profile' => $profile
+            ]);
+        }
+
         return view('admin.dashboard');
     }
 }
