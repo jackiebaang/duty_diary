@@ -95,7 +95,7 @@ class DiariesController extends Controller
                     'url' => route('approval-requests.show',$diary->id),
                 ];
                 
-                // Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));
+                Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));
 
                 Notification::route('slack', config('notifications.slack_webhook'))->notify(new NewDiaryPosted($diary));
             }
