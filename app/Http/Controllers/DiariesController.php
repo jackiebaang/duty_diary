@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewDiaryPosted;
+
 class DiariesController extends Controller
 {
     /**
@@ -92,7 +95,9 @@ class DiariesController extends Controller
                     'url' => route('approval-requests.show',$diary->id),
                 ];
                 
-                Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));
+                // Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));
+
+                Notification::route('slack', config('notifications.slack_webhook'))->notify(new NewDiaryPosted($diary));
             }
     
             $diaries = Diary::all();
