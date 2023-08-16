@@ -10,6 +10,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
+
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\DiaryApproved;
+
 class ApprovalRequestsController extends Controller
 {
     /**
@@ -160,7 +164,9 @@ class ApprovalRequestsController extends Controller
                 'url' => route('approval-requests.show',$diary->id),
             ];
             
-            Mail::to($user->email)->send(new ApprovedDiary($approvedDiary));            
+            Mail::to($user->email)->send(new ApprovedDiary($approvedDiary));      
+            
+            Notification::route('slack', config('notifications.slack_webhook'))->notify(new DiaryApproved($approvedDiary));
         }
 
 
