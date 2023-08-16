@@ -21,7 +21,7 @@ class UsersController extends Controller
     { 
         if(request()->ajax())
         {
-            $users = User::all();
+            $users = User::where('id','!=',Auth::user()->id)->get();
             return $this->generateDatatables($users);
         };
         return view('admin.users.index');
@@ -342,9 +342,9 @@ class UsersController extends Controller
                     $actionButtons = '<a href="'.route("users.edit",$data->id).'" data-id="'.$data->id.'" class="btn btn-sm btn-warning editUser">
                                         <i class="fas fa-edit"></i>
                                       </a>
-                                      <a href="" data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDelete('.$data->id.')">
+                                      <button data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDelete('.$data->id.')">
                                         <i class="fas fa-trash"></i>
-                                      </a>';
+                                      </button>';
                     return $actionButtons;
                 })
                 ->rawColumns(['action','role'])

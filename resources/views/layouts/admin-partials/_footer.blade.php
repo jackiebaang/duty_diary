@@ -21,7 +21,6 @@
     {{-- Delete Script --}}
     <script>
         function confirmDelete(id){
-            debugger;
             let userId = id;
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -37,51 +36,46 @@
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Kumbati! Mas lami ang virgin!',
-                cancelButtonText: 'Bata pa diay!',
+                cancelButtonText: 'Sige, next year na lang.',
                 reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        fetch(`/users/${userId}`, {
-                        method: 'DELETE',
+            }).then((result)=>{
+                if(result.isConfirmed){
+                    $.ajax({
+                        url: `/users/${userId}`,
+                        type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                             'Content-Type': 'application/json'
-                        }
-                    })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Virginan lage',
+                                text: "Navirginan na jud ang user.",
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Okay'
+                                }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $('#users-table').DataTable().ajax.reload();
+                                }
+                            })
 
-                    Swal.fire({
-                        title: 'Virginan lage',
-                        text: "Navirginan na jud ang user.",
-                        icon: 'success',
-                        showCancelButton: false,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Okay'
-                        }).then((result) => {
-                        if (result.isConfirmed) {
-                            // location.reload();
+                        },
+                        error: function(error) {
+                            // Handle error response
+                            console.error('DELETE request failed:', error);
                         }
-                    })
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Handle any errors if necessary
-            });
-                
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                'Okay, next time na lang!',
-                'Wa madayon kay bata pa.',
-                'error'
-                )
-            }
+                    });
+                } else {
+                    result.dismiss == Swal.DismissReason.cancel;
+                    swalWithBootstrapButtons.fire(
+                        'Okay, next time na lang!',
+                        'Wa madayon kay bata pa.',
+                        'error'
+                    );
+                }
             })
         }
     </script>
