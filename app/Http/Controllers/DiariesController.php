@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewDiaryEmail;
 use Illuminate\Http\Request;
 
 use App\Models\Diary;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
 class DiariesController extends Controller
@@ -79,6 +81,19 @@ class DiariesController extends Controller
                 'supervisor_id' => $request->supervisor,
                 'status' => 0
             ]);
+
+            if($diary){
+                $trainee = User::where('id','=',$diary->author_id)->first();
+                $supervisor = User::where('id','=',$diary->supervisor_id)->first();
+                $diary = [
+                    'trainee' => $trainee->name,
+                    'supervisor' => $supervisor->name,
+                    'sup_email' => $supervisor->email,
+                    'url' => route('approval-requests.show',$diary->id),
+                ];
+                
+                Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));
+            }
     
             $diaries = Diary::all();
             
@@ -248,9 +263,9 @@ class DiariesController extends Controller
                                     <a href="'.route("diaries.edit",$data->id).'" data-id="'.$data->id.'" class="btn btn-sm btn-warning editDiary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="" data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDelete('.$data->id.')">
+                                    <button data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDeleteDiary('.$data->id.')">
                                     <i class="fas fa-trash"></i>
-                                    </a>';
+                                    </button>';
                     return $actionButtons;
                 })
                 ->rawColumns(['action','status','title','author'])

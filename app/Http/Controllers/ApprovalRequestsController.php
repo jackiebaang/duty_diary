@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ApprovedDiary;
 use App\Models\Diary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
 class ApprovalRequestsController extends Controller
@@ -147,7 +149,20 @@ class ApprovalRequestsController extends Controller
             $date = $user->created_at->format('M d, Y');
             $name = $user->name;
             $title = 'EOD Report by ' . $name . ' on ' . $date;
+
+            
+            $trainee = User::where('id','=',$diary->author_id)->first();
+            $supervisor = User::where('id','=',$diary->supervisor_id)->first();
+            $approvedDiary = [
+                'trainee' => $trainee->name,
+                'supervisor' => $supervisor->name,
+                'sup_email' => $supervisor->email,
+                'url' => route('approval-requests.show',$diary->id),
+            ];
+            
+            Mail::to($user->email)->send(new ApprovedDiary($approvedDiary));            
         }
+
 
         $successMessage = $title .' has been approved!';
         return response()->json(['successMessage' => $successMessage]);
@@ -232,12 +247,12 @@ class ApprovalRequestsController extends Controller
                     $actionButtons = '<a href="'.route("approval-requests.show",$data->id).'" data-id="'.$data->id.'" class="btn btn-sm btn-primary">
                                         <i class="fas fa-eye"></i>
                                       </a>
-                                      <button data-id="'.$data->id.'" data-id="'.$data->id.'" class="btn btn-sm btn-success '.$hideApproveBtn.'" onclick="approveDiary('.$data->id.')">
+                                      <button data-id="'.$data->id.'" class="btn btn-sm btn-success '.$hideApproveBtn.'btn-'.$data->id.'" onclick="approveDiary('.$data->id.')">
                                         <i class="fas fa-check"></i>
-                                      </button>
-                                      <button data-id="'.$data->id.'" data-id="'.$data->id.'" class="btn btn-sm btn-danger '.$hideRejectBtn.'" onclick="rejectDiary('.$data->id.')">
-                                        <i class="fas fa-times"></i>
                                       </button>';
+                                    //   <button data-id="'.$data->id.'" class="btn btn-sm btn-danger '.$hideRejectBtn.'" onclick="rejectDiary('.$data->id.')">
+                                    //     <i class="fas fa-times"></i>
+                                    //   </button>
                     return $actionButtons;
                 })
                 ->rawColumns(['action','role','author','status'])

@@ -1,7 +1,7 @@
 <script>
     function approveDiary(diary){
         event.preventDefault();
-        let id = diary;
+        const id = diary;
         const url = "{{ route('approval-requests.approve', '') }}" + '/' + id; // Build the URL with the ID
         // Perform the PUT request using AJAX
 
@@ -15,6 +15,8 @@
             confirmButtonText: 'Yes, approve it!'
             }).then((result) => {
             if (result.isConfirmed) {
+                $('.btn-'+id).addClass('d-none');
+                
                 $.ajax({
                     url: url,
                     type: 'PUT',
@@ -33,7 +35,14 @@
                             confirmButtonText: 'Okay'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                $('#approval-requests-table').DataTable().ajax.reload();
+
+                                var currentRoute = "{{ Route::currentRouteName() }}";
+
+                                if (currentRoute === "{{ route('approval-requests.index') }}") {
+                                    $('#approval-requests-table').DataTable().ajax.reload();
+                                } else {
+                                    window.location.href = "{{ route('approval-requests.index') }}";
+                                }
                             }
                         })
                     },
