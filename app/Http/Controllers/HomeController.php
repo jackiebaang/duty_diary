@@ -48,7 +48,7 @@ class HomeController extends Controller
             $errorMessages[] = 'Please upload your profile picture!';
         }
 
-        if (Auth::user()->isSignatureComplete == 0) {
+        if (Auth::user()->isSignatureComplete == 0 && !Auth::user()->role == 3) {
             $errorMessages[] = 'Please upload your signature! Make sure it has a transparent background.';
         }
 

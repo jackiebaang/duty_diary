@@ -41,13 +41,15 @@
                         @else
                             <p class="badge badge-lg badge-warning mt-3" style="font-size:1.5em">Trainee</p>
                         @endif
-                        <div class="d-flex mt-5">
-                            @if ($profile->signature == Null)
-                                <img src="{{ asset('assets/images/sign-placeholder.png') }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}">    
-                            @else
-                                <img src="{{ asset('storage/'.$profile->signature) }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}" width="50%">    
-                            @endif
-                        </div>
+                        @if (!$profile->role == 3)
+                            <div class="d-flex mt-5">
+                                @if ($profile->signature == Null)
+                                    <img src="{{ asset('assets/images/sign-placeholder.png') }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}">    
+                                @else
+                                    <img src="{{ asset('storage/'.$profile->signature) }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}" width="50%">    
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
