@@ -40,7 +40,7 @@
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success btn-sm">Update</button>
-                <a href="" class="btn btn-secondary btn-sm">Cancel</a>
+                <a href="{{ back()->getTargetUrl() }}" class="btn btn-secondary btn-sm">Cancel</a>
             </div>
         </form>
     </div>
