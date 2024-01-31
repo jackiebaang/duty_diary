@@ -54,6 +54,7 @@
             <img src="{{ asset('assets/icons/diary-icon.ico') }}" alt="Diary Logo" width="8%">
             <h1>Intern Duty Diary</h1>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
+            <h1>Testing Ni!</h1>
         </div>
     </body>
 </html>
