@@ -28,6 +28,7 @@ Route::get('/not-authorized', function(){
     return view('auth.not-authorized');
 })->name('not-authorized');
 
+Route::get('/public/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestsController::class,'publicApprovalRequest'])->name('approval-request.public');
 Route::middleware('checkRouteAccess')->group(function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
     Route::resource('/diaries', DiariesController::class);

@@ -84,7 +84,6 @@ class DiariesController extends Controller
                 'supervisor_id' => $request->supervisor,
                 'status' => 0
             ]);
-
             if($diary){
                 $trainee = User::where('id','=',$diary->author_id)->first();
                 $supervisor = User::where('id','=',$diary->supervisor_id)->first();
@@ -92,7 +91,7 @@ class DiariesController extends Controller
                     'trainee' => $trainee->name,
                     'supervisor' => $supervisor->name,
                     'sup_email' => $supervisor->email,
-                    'url' => route('approval-requests.show',$diary->id),
+                    'url' => route('approval-request.public',$diary->id),
                 ];
                 
                 Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));

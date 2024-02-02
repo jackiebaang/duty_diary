@@ -28,20 +28,20 @@
                             <input type="text" name="name" id="name-input" class="form-control d-none" value="{{ $profile->name }}">
                             @method('PUT')
                         </form>
-
+                        
                         <form action="{{ route('users.updatePassword', $profile->id) }}" method="post" id="update-password-form">
                             @csrf
                             <input type="password" name="password" id="password-input" data-id="{{$profile->id}}" class="form-control d-none" value="{{ $profile->password }}">
                             @method('PUT')
                         </form>
-                        @if ($profile->role == 1)
+                        @if ($profile->role_id == 1)
                             <p class="badge badge-lg badge-primary mt-3" style="font-size:1.5em">Administrator</p>
-                        @elseif($profile->role == 2)
+                        @elseif($profile->role_id == 2)
                             <p class="badge badge-lg badge-success mt-3" style="font-size:1.5em">Supervisor</p>
                         @else
                             <p class="badge badge-lg badge-warning mt-3" style="font-size:1.5em">Trainee</p>
                         @endif
-                        @if (!$profile->role_id == 3)
+                        @if ($profile->role_id == 1 || $profile->role_id == 2)
                             <div class="d-flex mt-5">
                                 @if ($profile->signature == Null)
                                     <img src="{{ asset('assets/images/sign-placeholder.png') }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}">    

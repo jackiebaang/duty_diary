@@ -41,7 +41,7 @@ class NewDiaryPosted extends Notification
      */
     public function toSlack($notifiable)
     {
-        $content = $this->diary['trainee'] . ' has posted a duty diary and assigned to supervisor ' . $this->diary['supervisor'] . ' for Approval. [' . $this->diary['url'] . ']';
+        $content = $this->diary['trainee'] . ' has posted a duty diary and assigned to supervisor ' . $this->diary['supervisor'] . ' for Approval.' ."\n [" . $this->diary['url'] . ']';
         return (new SlackMessage)->content($content);
     }
 
