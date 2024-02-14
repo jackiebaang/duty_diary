@@ -255,7 +255,7 @@ class ApprovalRequestsController extends Controller
                     $user = User::where('id','=',$data->author_id)->first();
                     $date = $user->created_at->format('M d, Y');
                     $name = $user->name;
-                    $title = 'EOD Report by ' . $name . ' on ' . $data->created_at;
+                    $title = 'EOD Report by ' . $name . ' on ' . $data->created_at->format('m/d/Y');
                     return $title;
                 })
                 ->addColumn('action', function($data){
