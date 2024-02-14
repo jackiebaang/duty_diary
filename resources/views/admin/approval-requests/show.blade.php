@@ -42,7 +42,7 @@
                 </div>
                 <div class="row pl-2">
                     <div class="col-3">Diary Date: </div>
-                    <div class="col-9 font-weight-bold">{{ $diary['diary']->created_at->format('m/d/y') }}</div>
+                    <div class="col-9 font-weight-bold">{{ $diary['diary']->created_at->format('M d, Y') }}</div>
                 </div>
             </div>
             <h5 class="text-uppercase">Plan Today</h5>
