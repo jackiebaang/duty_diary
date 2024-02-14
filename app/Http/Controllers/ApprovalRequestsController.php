@@ -167,7 +167,7 @@ class ApprovalRequestsController extends Controller
         if($diary){
             $title = '';
             $user = User::where('id','=',$diary->author_id)->first();
-            $date = $user->created_at->format('M d, Y');
+            $date = $diary->created_at->format('M d, Y');
             $name = $user->name;
             $title = 'EOD Report by ' . $name . ' on ' . $date;
 
