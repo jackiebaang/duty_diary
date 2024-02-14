@@ -69,7 +69,7 @@ class ApprovalRequestsController extends Controller
     {
         $diary = Diary::where('id','=',$id)->first();
         $user = User::where('id','=',$diary->author_id)->first();
-        $date = $user->created_at->format('M d, Y');
+        $date = $diary->created_at->format('M d, Y');
         $name = $user->name;
         $sup = User::where('id','=',$diary->supervisor_id)->first();
         $supervisor = $sup->name;
