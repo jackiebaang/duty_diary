@@ -7,7 +7,7 @@
                 <img src="{{ asset('assets/images/cdl-logo.png') }}" alt="CDL Logo" width="50%" class="cdl-logo">
             </div>
             <div class="col-8 col-md-6 text-right d-flex justify-content-end align-items-center">
-                <h1>Intern Duty Diary</h1>
+                <h1>Duty Diary</h1>
                 <img src="{{ asset('assets/icons/diary-icon.ico') }}" alt="Diary Logo" width="15%">
             </div>
         </div>

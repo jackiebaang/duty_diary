@@ -30,6 +30,6 @@ class NewUserEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('admin.mails.new-user')->subject('Welcome to CDL\'s Internship Duty Diary');
+        return $this->markdown('admin.mails.new-user')->subject('Welcome to CDL\'s Duty Diary');
     }
 }

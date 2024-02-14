@@ -52,7 +52,7 @@
         <div class="container">
             <img src="{{ asset('assets/images/cdl-logo.png') }}" alt="CDL Logo" width="30%" class="cdl-logo">
             <img src="{{ asset('assets/icons/diary-icon.ico') }}" alt="Diary Logo" width="8%">
-            <h1>Intern Duty Diary</h1>
+            <h1>Duty Diary</h1>
             <a href="{{ route('login') }}" class="login-btn">Login</a>
         </div>
     </body>

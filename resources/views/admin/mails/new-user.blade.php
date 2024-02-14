@@ -9,7 +9,7 @@
 <br>
 Hello {{ $inviteData['user']->name }},  
 <br><br>
-{{ $inviteData['invitedBy']}} has invited you to CDL's Internship Duty Diary  
+{{ $inviteData['invitedBy']}} has invited you to CDL's Duty Diary  
 <br><br>
 *****************************************<br>
 Username: {{ $inviteData['user']->email }}<br>

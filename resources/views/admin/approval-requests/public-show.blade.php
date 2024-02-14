@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <div class="header-box py-3 border-bottom mb-3">
-                <h3 class="text-uppercase bg-primary p-2 text-light">Practicum Duty Diary</h3>
+                <h3 class="text-uppercase bg-primary p-2 text-light">Duty Diary</h3>
                 <div class="row pl-2">
                     <div class="col-3">Name of Trainee: </div>
                     <div class="col-9 font-weight-bold">{{ $diary['name'] }}</div>
