@@ -5,7 +5,7 @@
         <div class="card-header">
             New Diary
         </div>
-        <form action="{{route('diaries.store')}}" method="POST">
+        <form action="{{route('diaries.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                     <div class="form-group">
@@ -27,6 +27,10 @@
                     <div class="form-group">
                         <label for="tomorrows-plan">Tomorrow's Plan</label>
                         <textarea class="form-control" id="tomorrows-plan" name="plantomorrow" rows="3">{{ old('plantomorrow') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Photo</label>
+                        <input type="file" class="form-control" id="diary-photo" name="photo" rows="3" value="{{ old('photo') }}">
                     </div>
                     <div class="form-group">
                         <label for="supervisor">Supervisor</label>
@@ -55,4 +59,5 @@
             </div>
         </form>
     </div>
+    @include('admin.diaries.partials._scripts')
 @endsection

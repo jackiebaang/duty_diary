@@ -71,8 +71,22 @@ class DiariesController extends Controller
                 'roadblocks' => 'required',
                 'summary' => 'required',
                 'plantomorrow' => 'required',
-                'supervisor' => 'required'
+                'supervisor' => 'required',
+                'photo' => 'required|mimes:jpg,jpeg,png,gif',
             ]);
+
+            $now = new \DateTime('NOW');
+            $date = $now->format('m-d-Y_H.i.s.u');
+
+            if($request->hasFile('photo')){
+                $photoNameAndExtension = $request->file('photo')->getClientOriginalName();
+                $photoFilename = str_replace(' ','_',pathinfo($photoNameAndExtension, PATHINFO_FILENAME));
+                $photoExtension = $request->file('photo')->getClientOriginalExtension();
+                $diary_photo = $photoFilename.'-'.$date.'.'.$photoExtension;
+                $photoUrl = $request->file('photo')->storeAs('public/uploads/diary-photo', $diary_photo);
+            } else {
+                $diary_photo = 'No Data';
+            }
     
             $diary = Diary::create([
                 'plan_today' => $request->plantoday,
@@ -82,8 +96,30 @@ class DiariesController extends Controller
                 'plan_tomorrow' => $request->plantomorrow,
                 'author_id' => Auth::user()->id,
                 'supervisor_id' => $request->supervisor,
+                'photo' => $diary_photo,
                 'status' => 0
             ]);
+
+            $ptd = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->plantoday);
+            $eod = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->eod);
+            $rb = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->roadblocks);
+            $sum = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->summary);
+            $ptm = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->plantomorrow);
+
+            $ptdNewLine = str_replace('</li>','\n',$ptd);
+            $eodNewLine = str_replace('</li>','\n',$eod);
+            $rbNewLine = str_replace('</li>','\n',$rb);
+            $sumNewLine = str_replace('</li>','\n',$sum);
+            $ptmNewLine = str_replace('</li>','\n',$ptm);
+
+            $planToday = str_replace('<li>','-',$ptdNewLine);
+            $endOfDay = str_replace('<li>','-',$eodNewLine);
+            $roadblocks = str_replace('<li>','-',$rbNewLine);
+            $summary = str_replace('<li>','-',$sumNewLine);
+            $planTomorrow = str_replace('<li>','-',$ptmNewLine);
+
+            $htmlContent = "*{Plan Today: }*".$planToday."\n*{End of Day Report: }*".$endOfDay."\n*{Roadblocks: }*".$roadblocks."\n*{Summary: }*".$summary."\n*{Plans for Tomorrow: }*".$planTomorrow;
+
             if($diary){
                 $trainee = User::where('id','=',$diary->author_id)->first();
                 $supervisor = User::where('id','=',$diary->supervisor_id)->first();
@@ -92,6 +128,7 @@ class DiariesController extends Controller
                     'supervisor' => $supervisor->name,
                     'sup_email' => $supervisor->email,
                     'url' => route('approval-request.public',$diary->id),
+                    'content' => $htmlContent
                 ];
                 
                 Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));

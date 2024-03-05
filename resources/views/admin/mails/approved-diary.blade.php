@@ -9,7 +9,7 @@
 <br>
 Hello {{ $approvedDiary['trainee'] }},  
 <br><br>
-Congratulations! Your supervisor {{ $approvedDiary['supervisor']}} has approved duty diary.
+Congratulations! Your supervisor {{ $approvedDiary['supervisor']}} has approved your duty diary.
 <br><br>
 @component('mail::button', ['url' => $approvedDiary['url'], 'class'=>'text-right'])
 View Duty Diary
