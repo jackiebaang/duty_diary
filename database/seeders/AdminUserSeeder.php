@@ -24,6 +24,8 @@ class AdminUserSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin_password'),
+            'isPicComplete' => 0,
+            'isSignatureComplete' => 0,
             'role_id' => $adminRole->id,
         ]);
     }
