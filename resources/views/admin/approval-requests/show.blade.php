@@ -61,6 +61,14 @@
             <h5 class="text-uppercase">Summary</h5>
             {!! $diary['diary']->summary !!}
             <hr>
+
+            <h5 class="text-uppercase font-weight-bold">Diary Photo</h5>
+            @if ($diary['diary']->photo != null)
+                <img src="{{ asset('storage/uploads/diary-photo/'.$diary['diary']->photo) }}" width="100%">    
+            @else
+                <div class="alert alert-secondary">No image upload.</div>
+            @endif
+            
             <p class="mt-5">Checked by:</p>
             <h5 class="mt-5 text-uppercase m-0">{{$diary['supervisor'] }}</h5>
             <p class="m-0">HTE Supervising Officer</p>
