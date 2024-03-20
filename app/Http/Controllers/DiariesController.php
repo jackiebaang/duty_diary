@@ -100,11 +100,11 @@ class DiariesController extends Controller
                 'status' => 0
             ]);
 
-            $ptd = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->plantoday);
-            $eod = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->eod);
-            $rb = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->roadblocks);
-            $sum = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->summary);
-            $ptm = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>'],'',$request->plantomorrow);
+            $ptd = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>','<strong>','</strong>'],'',$request->plantoday);
+            $eod = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>','<strong>','</strong>'],'',$request->eod);
+            $rb = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>','<strong>','</strong>'],'',$request->roadblocks);
+            $sum = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>','<strong>','</strong>'],'',$request->summary);
+            $ptm = str_replace(['<div>','</div>','<ul>','</ul>','<p>','</p>','<strong>','</strong>'],'',$request->plantomorrow);
 
             $ptdNewLine = str_replace('</li>','\n',$ptd);
             $eodNewLine = str_replace('</li>','\n',$eod);
@@ -118,7 +118,7 @@ class DiariesController extends Controller
             $summary = str_replace('<li>','-',$sumNewLine);
             $planTomorrow = str_replace('<li>','-',$ptmNewLine);
 
-            $htmlContent = "*{Plan Today: }*".$planToday."\n*{End of Day Report: }*".$endOfDay."\n*{Roadblocks: }*".$roadblocks."\n*{Summary: }*".$summary."\n*{Plans for Tomorrow: }*".$planTomorrow;
+            $htmlContent = "*{Plan Today:}* ".$planToday."\n*{End of Day Report:}* ".$endOfDay."\n*{Roadblocks:}* ".$roadblocks."\n*{Summary:}* ".$summary."\n*{Plans for Tomorrow:} *".$planTomorrow;
 
             if($diary){
                 $trainee = User::where('id','=',$diary->author_id)->first();
